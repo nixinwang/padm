@@ -20,9 +20,11 @@ args = parser.parse_args()
 pool = multiprocessing.Pool(processes=args.num)
 
 start_time = time.time()
-result = pool.map(run_cmd, [args.cmd, args.cmd])
-end_time = time.time()
 
+iteration = [args.cmd for i in range(args.num)]
+result = pool.map(run_cmd, iteration)
+
+end_time = time.time()
 work_time = end_time - start_time
 
 print(f'spent {str(work_time)}')
